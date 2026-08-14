@@ -1,9 +1,12 @@
 import { PORT } from "./config/env.js";
 import app from "./app.js";
+import { connectDB } from "./config/database.js";
 
 async function startServer() {
-    app.listen(PORT, () => {
-        console.log(`[server]: Running on port ${PORT}`);
+    connectDB().then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
     });
 }
 
