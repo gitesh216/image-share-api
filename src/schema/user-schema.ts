@@ -6,6 +6,8 @@ const userSchema = new Schema(
             type: String,
             required: true,
             unique: true,
+            minLength: 5,
+            trim: true,
         },
         email: {
             type: String,
@@ -22,4 +24,4 @@ const userSchema = new Schema(
     { timestamps: true },
 );
 
-export const Image = model("User", userSchema);
+export const User = model("User", userSchema);
