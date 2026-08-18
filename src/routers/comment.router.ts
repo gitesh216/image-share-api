@@ -4,6 +4,6 @@ import { addComment, getCommentsWithReplies } from "../controllers/comment.contr
 const commentRouter: Router = Router();
 
 commentRouter.post("/", addComment);
-commentRouter.post("/:commentId", getCommentsWithReplies);
+commentRouter.get("/:commentId", getCommentsWithReplies);
 
 export default commentRouter;

@@ -15,9 +15,17 @@ export async function createComment(data: CreateCommentDTO) {
         throw badRequest("User not found");
     }
 
-    const targetExists = await findPostById(data.commentableId);
-    if (!targetExists || targetExists === null) {
-        throw badRequest("Commentable not found");
+    const targetModel = data.onModel === "Post" ? "Post" : "Comment";
+    if (targetModel === "Comment") {
+        const targetExists = await findCommentById(data.commentableId);
+        if (!targetExists || targetExists === null) {
+            throw badRequest("Commentable not found");
+        }
+    } else {
+        const targetExists = await findPostById(data.commentableId);
+        if (!targetExists || targetExists === null) {
+            throw badRequest("Commentable not found");
+        }
     }
 
     const comment = await createCommentRepo(data);
