@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import os from "os";
+import userRouter from "./routers/user.router.js";
 
 const app: Express = express();
 
@@ -14,5 +15,8 @@ app.get("/ping", (_req, res) => {
         timestamp: new Date().toISOString(),
     });
 });
+
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/posts", postRouter);
 
 export default app;
