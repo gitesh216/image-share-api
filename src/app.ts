@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import os from "os";
 import userRouter from "./routers/user.router.js";
 import postRouter from "./routers/post.router.js";
+import commentRouter from "./routers/comment.router.js";
 
 const app: Express = express();
 
@@ -19,5 +20,6 @@ app.get("/ping", (_req, res) => {
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/comments", commentRouter);
 
 export default app;

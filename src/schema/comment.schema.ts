@@ -29,6 +29,16 @@ const commentSchema = new Schema(
     },
 );
 
+commentSchema.virtual("replies", {
+    ref: "Comment",
+    localField: "_id",
+    foreignField: "commentableId",
+    match: { onModel: "Comment" },
+});
+
+commentSchema.set("toObject", { virtuals: true });
+commentSchema.set("toJSON", { virtuals: true });
+
 commentSchema.index({ onModel: 1, commentableId: 1 });
 
 export const Comment = model("Comment", commentSchema);
