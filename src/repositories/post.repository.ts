@@ -18,7 +18,7 @@ export async function deletePost(id: string) {
 
 export async function findPosts(itemsToSkip: number, pageSize: number) {
     const pagePosts = await Post.find({})
-        .sort({ createdAt: -1 })
+        .sort({ createdAt: 1 })
         .skip(itemsToSkip)
         .limit(pageSize);
     return pagePosts;

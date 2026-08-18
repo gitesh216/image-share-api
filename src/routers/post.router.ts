@@ -14,3 +14,5 @@ postRouter.get("/:pageNumber/:pageSize", getAllPagePosts);
 postRouter.delete("/:postId", removePost);
 postRouter.put("/:postId", validate(updatePostSchema), updatePost);
 postRouter.post("/", validate(postSchema), createPost);
+
+export default postRouter;     

@@ -14,7 +14,7 @@ export async function createPost(req: Request, res: Response) {
 }
 
 export async function getAllPagePosts(req: Request, res: Response) {
-    const { pageNumber, pageSize } = req.query;
+    const { pageNumber, pageSize } = req.params;
     const posts = await getAllPostsService(
         Number(pageNumber),
         Number(pageSize),
