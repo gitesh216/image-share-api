@@ -3,6 +3,7 @@ import os from "os";
 import userRouter from "./routers/user.router.js";
 import postRouter from "./routers/post.router.js";
 import commentRouter from "./routers/comment.router.js";
+import { errorHandler } from "./middlewares/error-handler.js";
 
 const app: Express = express();
 
@@ -22,4 +23,6 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/comments", commentRouter);
 
+
+app.use(errorHandler);
 export default app;

@@ -8,7 +8,11 @@ import {
 } from "../services/post.service.js";
 import { sendSuccess } from "../utils/api-response.js";
 
+
 export async function createPost(req: Request, res: Response) {
+    if (req.file) {
+        req.body.image = req.file.location;
+    }
     const post = await createPostService(req.body);
     sendSuccess(res, post);
 }

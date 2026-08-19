@@ -9,13 +9,12 @@ export const nativeObjectIdSchema = z
 
 export const postSchema = z.object({
     caption: z.string().min(5).trim(),
-    image: z.string().trim().url(),
     userId: nativeObjectIdSchema,
+    image: z.string(),
 });
 
 export const updatePostSchema = z.object({
     caption: z.string().min(5).trim().optional(),
-    image: z.string().trim().url().optional(),
 });
 
 export type UpdatePostDTO = z.infer<typeof updatePostSchema>;
