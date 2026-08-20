@@ -4,12 +4,14 @@ import userRouter from "./routers/user.router.js";
 import postRouter from "./routers/post.router.js";
 import commentRouter from "./routers/comment.router.js";
 import { errorHandler } from "./middlewares/error-handler.js";
+import limiter from "./middlewares/rate-limiter.js";
 
 const app: Express = express();
 
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
+app.use(limiter);
 
 app.get("/ping", (_req, res) => {
     res.json({
