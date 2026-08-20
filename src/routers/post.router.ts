@@ -14,7 +14,7 @@ const postRouter: Router = Router();
 
 postRouter.get("/:pageNumber/:pageSize", getAllPagePosts);
 postRouter.delete("/:postId", removePost);
-postRouter.put("/:postId", validate(updatePostSchema), updatePost);
+postRouter.put("/:postId", uploadImage.single("image"), validate(updatePostSchema), updatePost);
 postRouter.post("/", uploadImage.single("image"), addImageString, validate(postSchema),createPost);
 
 export default postRouter;
