@@ -14,7 +14,7 @@ export async function createPost(req: Request, res: Response) {
         req.body.image = req.file.location;
     }
     const post = await createPostService(req.body);
-    sendSuccess(res, post);
+    sendSuccess(res, post, 201, "Post created successfully");
 }
 
 export async function getAllPagePosts(req: Request, res: Response) {
@@ -23,23 +23,23 @@ export async function getAllPagePosts(req: Request, res: Response) {
         Number(pageNumber),
         Number(pageSize),
     );
-    sendSuccess(res, posts);
+    sendSuccess(res, posts, 200, "Posts retrieved successfully");
 }
 
 export async function removePost(req: Request, res: Response) {
     const postId = req.params.postId as string;
     const post = await deletePostByIdService(postId);
-    sendSuccess(res, post);
+    sendSuccess(res, post, 200, "Post removed successfully");
 }
 
 export async function updatePost(req: Request, res: Response) {
     const postId = req.params.postId as string;
     const post = await updatePostService(postId, req.body);
-    sendSuccess(res, post);
+    sendSuccess(res, post, 200, "Post updated successfully");
 }
 
 export async function getPostByUserId(req: Request, res: Response) {
     const userId = req.params.userId as string;
     const post = await getPostsByUserIdService(userId);
-    sendSuccess(res, post);
+    sendSuccess(res, post, 200, "Posts retrieved successfully");
 }
