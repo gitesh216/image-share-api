@@ -35,21 +35,53 @@ This API provides secure input validation, robust error handling, rate limiting,
 
 ```text
 ├── src
-│   ├── config          # Configuration (DB connection, AWS S3, Swagger, Env variables)
-│   ├── controllers     # Request handlers & response formatting
-│   ├── dtos            # Data Transfer Objects & Zod validation schemas
-│   ├── middlewares     # Express middlewares (error handling, rate limiting, validation, file upload)
-│   ├── repositories    # Database access layer (direct interaction with MongoDB models)
-│   ├── routers         # API Route definitions
-│   ├── schema          # Mongoose Schemas & Database Models
-│   ├── services        # Core business logic
-│   ├── types           # Custom TypeScript type definitions
-│   ├── utils           # Shared helper functions (e.g., standard API responses)
-│   ├── app.ts          # Express App configuration and middleware setup
-│   └── server.ts       # Application entry point
-├── docker-compose.yml  # Local MongoDB setup
-├── package.json        # Dependencies & scripts
-└── tsconfig.json       # TypeScript configuration
+│   ├── config                  # Configuration
+│   │   ├── awsS3.ts            # AWS S3 setup
+│   │   ├── database.ts         # Database connection helper
+│   │   ├── env.ts              # Env variable loading & validation
+│   │   └── swagger.config.ts   # Swagger/OpenAPI setup
+│   ├── controllers             # Controllers handling API endpoints
+│   │   ├── comment.controller.ts
+│   │   ├── post.controller.ts
+│   │   └── user.controller.ts
+│   ├── dtos                    # Data Transfer Objects / Zod validation schemas
+│   │   ├── comment.dto.ts
+│   │   ├── post.dto.ts
+│   │   └── user.dto.ts
+│   ├── middlewares             # Express middlewares
+│   │   ├── addImageString.ts   # Middleware to resolve S3 image URLs
+│   │   ├── error-handler.ts    # Global error response handler
+│   │   ├── rate-limiter.ts     # API Rate limiting configuration
+│   │   ├── uploadImage.ts      # Multer file upload configured for S3
+│   │   └── validate.ts         # Request validation middleware utilizing Zod
+│   ├── repositories            # Database query methods/abstractions
+│   │   ├── comment.repository.ts
+│   │   ├── post.repository.ts
+│   │   └── user.repository.ts
+│   ├── routers                 # Express Router configuration
+│   │   ├── comment.router.ts
+│   │   ├── post.router.ts
+│   │   └── user.router.ts
+│   ├── schema                  # Mongoose Schemas & Database Models
+│   │   ├── comment.schema.ts
+│   │   ├── like.schema.ts
+│   │   ├── post.schema.ts
+│   │   └── user-schema.ts
+│   ├── services                # Business logic services
+│   │   ├── comment.service.ts
+│   │   ├── post.service.ts
+│   │   └── user.service.ts
+│   ├── types                   # Custom TypeScript types and declarations
+│   │   └── multer-s3.d.ts
+│   ├── utils                   # General utilities
+│   │   ├── api-error.ts        # Custom API Error class
+│   │   ├── api-response.ts     # Standardized JSON success response helper
+│   │   └── sanitize-file.ts    # File naming sanitizer
+│   ├── app.ts                  # Main Express app instantiation and configuration
+│   └── server.ts               # HTTP Server initialization and entry point
+├── docker-compose.yml          # Container configuration (MongoDB setup)
+├── package.json                # Project dependencies and scripts
+└── tsconfig.json               # TypeScript compiler config
 ```
 
 ---
